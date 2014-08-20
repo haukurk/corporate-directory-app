@@ -1,0 +1,88 @@
+﻿[
+    {
+        
+        "key": "_MainHTMLTitle_",
+        "value": "Fyrirtækisskrá",
+        "description": "Main Form Title"
+    },
+    {
+        "key": "_Department_",
+        "value": "Deild",
+        "description": "Department field description"
+    },
+    {
+        "key": "_Division_",
+        "value": "Svið",
+        "description": "Division field description"
+    },
+    {
+        "key": "_ContainerTitle_",
+        "value": "Leit í fyrirtækisskrá",
+        "description": "gfds"
+    },
+    {
+        "key": "_FilterDesc_",
+        "value": "<i class=\"fa fa-filter\"></i><strong>Sía</strong>, ef þú vilt einungis fá niðurstöður frá ákveðnu <strong>fyrirtæki</strong>, <strong>landi</strong> eða <strong>skrifstofu</strong>",
+        "description": ""
+    },
+    {
+        "key": "_FilterAllCountries_",
+        "value": "Land (Öll lönd)",
+        "description": ""
+    },
+    {
+        "key": "_SwitchLang_",
+        "value": "Íslenska",
+        "description": ""
+    },
+    {
+        "key": "_Filter_",
+        "value": "Sía",
+        "description": ""
+    },
+    {
+        "key": "_FilterPreText_",
+        "value": "Þú getur síað niðurstöður með eftirfarandi síum:",
+        "description": ""
+    },
+    {
+        "key": "_FilterPreText_",
+        "value": "You can filter the results with one of the following filters:",
+        "description": ""
+    },
+    {
+        "key": "_CountryLowerCaseDative_",
+        "value": "landi",
+        "description": ""
+    },
+    {
+        "key": "_CompanyLowerCaseDative_",
+        "value": "fyrirtæki",
+        "description": ""
+    },
+    {
+        "key": "_OfficeLowerCaseDative_",
+        "value": "skrifstofu",
+        "description": ""
+    },   
+    {
+        "key": "_OrLowerCase_",
+        "value": "eða",
+        "description": ""
+    },
+    {
+        "key": "_CompanyAllFilter_",
+        "value": "Öll fyrirtæki",
+        "description": ""
+    },
+    {
+        "key": "_SearchPlaceHolder_",
+        "value": "Nafn, netfang, deild, innanhússími, GSM, fyrirtæki, land eða skrifstofa.",
+        "description": ""
+    },
+    {
+        "key": "_EMPTY_",
+        "value": "EMPTY TEXT.",
+        "description": ""
+    }
+]

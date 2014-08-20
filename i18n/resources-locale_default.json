@@ -1,0 +1,39 @@
+﻿[
+    {
+        
+        "key": "_MainHTMLTitle_",
+        "value": "Corporate Directory",
+        "description": "Main Form Title"
+    },
+    {
+        "key": "_Department_",
+        "value": "Department",
+        "description": "Department field description"
+    },
+    {
+        "key": "_Division_",
+        "value": "Division",
+        "description": "Division field description"
+    },
+    {
+        "key": "_ContainerTitle_",
+        "value": "Corporate Directory Search",
+        "description": "gfds"
+    },
+    {
+        "key": "_FilterDesc_",
+        "value": "<i class=\"fa fa-filter\"></i><strong>Filter</strong>. Use these options if you want to filter out results based on <strong>company</strong>, <strong>country</strong> or <strong>office</strong>",
+        "description": "fgsg"
+    },
+    {
+        "key": "_FilterAllCountries_",
+        "value": "Land (Öll lönd)",
+        "description": "gdfgsdf"
+    },
+    {
+        "key": "_SwitchLang_",
+        "value": "Switch Language",
+        "description": "gdfgsdf"
+    },
+	
+]

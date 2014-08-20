@@ -1,0 +1,79 @@
+﻿[
+    {
+        
+        "key": "_MainHTMLTitle_",
+        "value": "Corporate Directory",
+        "description": ""
+    },
+    {
+        "key": "_Department_",
+        "value": "Department",
+        "description": ""
+    },
+    {
+        "key": "_Division_",
+        "value": "Division",
+        "description": ""
+    },
+    {
+        "key": "_ContainerTitle_",
+        "value": "Corporate Directory Search",
+        "description": ""
+    },
+    {
+        "key": "_FilterDesc_",
+        "value": "<i class=\"fa fa-filter\"></i><strong>Filter</strong>. Use these options if you want to filter out results based on <strong>company</strong>, <strong>country</strong> or <strong>office</strong>",
+        "description": ""
+    },
+    {
+        "key": "_FilterAllCountries_",
+        "value": "Land (Öll lönd)",
+        "description": ""
+    },
+    {
+        "key": "_SwitchLang_",
+        "value": "English",
+        "description": ""
+    },
+    {
+        "key": "_Filter_",
+        "value": "Filter",
+        "description": ""
+    },
+    {
+        "key": "_FilterPreText_",
+        "value": "You can filter the results with one of the following filters:",
+        "description": ""
+    },
+    {
+        "key": "_CompanyAllFilter_",
+        "value": "All Companies",
+        "description": ""
+    },
+    {
+        "key": "_CountryLowerCaseDative_",
+        "value": "country",
+        "description": ""
+    },
+    {
+        "key": "_CompanyLowerCaseDative_",
+        "value": "company",
+        "description": ""
+    },
+    {
+        "key": "_OrLowerCase_",
+        "value": "or",
+        "description": ""
+    },
+    {
+        "key": "_OfficeLowerCaseDative_",
+        "value": "office",
+        "description": ""
+    }, 
+    {
+        "key": "_SearchPlaceHolder_",
+        "value": "Name, email address, department, mobile, company, country or office location",
+        "description": ""
+    }
+	
+]

@@ -1,0 +1,16 @@
+{
+  "name": "corporate-directory",
+  "version": "0.1.0",
+  "dependencies": {
+	"angular": null,
+	"angular-bootstrap": "*",
+	"angular-moment": "*",
+	"angular-route": "*",
+    "jquery": null,
+    "mustache": null,
+    "bootstrap": null,
+    "fontawesome": null,
+    "ionicons": null,
+    "moment": null
+  }
+}
