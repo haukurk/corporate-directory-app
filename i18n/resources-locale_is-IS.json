@@ -27,7 +27,17 @@
     },
     {
         "key": "_FilterAllCountries_",
-        "value": "Land (Öll lönd)",
+        "value": "Öll lönd",
+        "description": ""
+    },
+    {
+        "key": "_FilterAllCompanies_",
+        "value": "Öll fyrirtæki",
+        "description": ""
+    },
+    {
+        "key": "_FilterAllOffices_",
+        "value": "Allar skrifstofur",
         "description": ""
     },
     {
@@ -37,7 +47,7 @@
     },
     {
         "key": "_Filter_",
-        "value": "Sía",
+        "value": "Sýna síu",
         "description": ""
     },
     {
@@ -71,16 +81,106 @@
         "description": ""
     },
     {
-        "key": "_CompanyAllFilter_",
-        "value": "Öll fyrirtæki",
-        "description": ""
-    },
-    {
         "key": "_SearchPlaceHolder_",
         "value": "Nafn, netfang, deild, innanhússími, GSM, fyrirtæki, land eða skrifstofa.",
         "description": ""
     },
     {
+        "key": "_FirstText_",
+        "value": "Fyrstu síðu",
+        "description": ""
+    },
+	{
+		"key": "_SearchTipsText_",
+		"value": "Ertu að leita af...",
+		"description": ""
+	},
+	{
+		"key": "_Company_",
+		"value": "Fyrirtæki",
+		"description": ""
+	},
+	{
+		"key": "_Country_",
+		"value": "Land",
+		"description": ""
+	},
+	{
+		"key": "_Office_",
+		"value": "Skrifstofa",
+		"description": ""
+	},
+	{
+		"key": "_AreYouLookingForString_",
+		"value": "Ertu að leita af",
+		"description": ""
+	},
+	{
+		"key": "_EmployeeCardTitle_",
+		"value": "Starfstitill",
+		"description": ""
+	},
+	{
+		"key": "_EmployeeCardEmail_",
+		"value": "Póstfang",
+		"description": ""
+	},
+	{
+		"key": "_EmployeeCardDepartment_",
+		"value": "Deild",
+		"description": ""
+	},
+	{
+		"key": "_EmployeeCardDivision_",
+		"value": "Svið",
+		"description": ""
+	},
+	{
+		"key": "_EmployeeCardInternalPhone_",
+		"value": "Innanhús númer",
+		"description": ""
+	},
+	{
+		"key": "_EmployeeCardWorkPhone_",
+		"value": "Utanhús númer",
+		"description": ""
+	},
+	{
+		"key": "_EmployeeCardMobilePhone_",
+		"value": "Farsíma númer",
+		"description": ""
+	},
+	{
+		"key": "_EmployeeCardEmployeeNumber_",
+		"value": "Kennitala",
+		"description": ""
+	},
+	{
+		"key": "_EmployeeCardCountry_",
+		"value": "Land",
+		"description": ""
+	},
+	{
+		"key": "_EmployeeCardOffice_",
+		"value": "Skrifstofa (Borg)",
+		"description": ""
+	},
+	{
+		"key": "_EmployeeCardSchedule_",
+		"value": "Áætlun",
+		"description": ""
+	},
+	{
+		"key": "_EmployeeCardScheduleUnknown_",
+		"value": "Unknown",
+		"description": ""
+	},
+	{
+		"key": "_EmployeeCardCompany_",
+		"value": "Fyrirtæki",
+		"description": ""
+	},
+	{
         "key": "_EMPTY_",
         "value": "EMPTY TEXT.",
         "description": ""

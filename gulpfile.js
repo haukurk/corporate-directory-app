@@ -19,6 +19,7 @@ buildBowerSrc('bower_components/ionicons/css/ionicons.min.css',bower_src.css);
 /* Bower - JS */
 buildBowerSrc('bower_components/angular/angular.min.js', bower_src.js);
 buildBowerSrc('bower_components/angular-route/angular-route.min.js', bower_src.js);
+buildBowerSrc('bower_components/angular-animate/angular-animate.min.js', bower_src.js);
 buildBowerSrc('bower_components/angular-bootstrap/ui-bootstrap.min.js', bower_src.js);
 buildBowerSrc('bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js', bower_src.js);
 buildBowerSrc('bower_components/angular-moment/angular-moment.min.js', bower_src.js);

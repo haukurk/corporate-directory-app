@@ -10,7 +10,6 @@
     "gulp-imagemin": "*",
     "gulp-jshint": "*",
     "gulp-minify-css": "*",
-	"gulp-ngmin": "*",
     "gulp-minify-html": "*",
     "gulp-rename": "*",
     "gulp-sass": "*",

@@ -4,7 +4,7 @@
 ==================================================================*/
 /* global angular */
 
-var app = angular.module('corpdir', ['ngRoute', 'ui.bootstrap', 'angularMoment']);
+var app = angular.module('corpdir', ['ngRoute', 'ngAnimate', 'ui.bootstrap', 'angularMoment']);
 
 app.config(['$routeProvider', '$locationProvider', '$httpProvider', function ($routeProvider, $locationProvider, $httpProvider, localize) {
 	'use strict';
@@ -13,11 +13,14 @@ app.config(['$routeProvider', '$locationProvider', '$httpProvider', function ($r
 		.when('/', {
 			templateUrl: 'corpdirapplication/templates/home.htm'
 		})
+        .when('/results', {
+            templateUrl: 'corpdirapplication/templates/results.htm'
+        })
 		.otherwise({
 			redirectTo: '/'
 		});
 
-	$locationProvider.hashPrefix('!');
+	//$locationProvider.hashPrefix('!');
    
 
 	// This is required for Browser Sync to work poperly
@@ -69,6 +72,7 @@ app
             // flag to indicate if the service hs loaded the resource file
             resourceFileLoaded: false,
 
+
             // success handler for all server communication
             successCallback: function (data) {
                 // store the returned array in the dictionary
@@ -80,10 +84,11 @@ app
             },
 
             // allows setting of language on the fly
-            setLanguage: function (value) {
+            setLanguage: function (value,cb) {
                 localize.language = value;
-                localize.initLocalizedResources();
+                localize.initLocalizedResources(cb);
             },
+           
 
             // allows getting the current language settingsy
             getLanguage: function (value) {
@@ -115,18 +120,30 @@ app
             },
 
             // loads the language resource file from the server
-            initLocalizedResources: function () {
+            initLocalizedResources: function (cb) {
                 // build the url to retrieve the localized resource file
                 var url = localize.url || localize.buildUrl();
                 // request the resource file
-                $http({ method: "GET", url: url, cache: false }).success(localize.successCallback).error(function () {
-                    // the request failed set the url to the default resource file
-                    var url = '/i18n/resources-locale_default.json';
-                    // request the default resource file
-                    $http({ method: "GET", url: url, cache: false }).success(localize.successCallback);
-                });
+                
+                //TODO: ugly.
+                if(cb == null)
+                {
+                    $http({ method: "GET", url: url, cache: false }).success(localize.successCallback).error(function() {
+                        // the request failed set the url to the default resource file
+                        var url = '/i18n/resources-locale_default.json';
+                        // request the default resource file
+                        $http({ method: "GET", url: url, cache: false }).success(localize.successCallback);
+                    });
+                } else {
+                    $http({ method: "GET", url: url, cache: false }).success(localize.successCallback).success(cb).error(function () {
+                        // the request failed set the url to the default resource file
+                        var url = '/i18n/resources-locale_default.json';
+                        // request the default resource file
+                        $http({ method: "GET", url: url, cache: false }).success(localize.successCallback).success(cb);
+                    });
+                }
             },
-
+            
             // checks the dictionary for a localized resource string
             getLocalizedString: function (value) {
                 // default the result to an empty string
@@ -243,33 +260,100 @@ app
 
 /* NHaukssonote: Naming convention for controllers are UpperCamelCase. */
 
-app.controller('MainCtrl', ['$http', '$scope', 'localize', function ($http, $scope, localize) {
+app.controller('MainCtrl', ['$http', '$scope', 'localize', '$timeout', '$filter', function ($http, $scope, localize, $timeout, $filter) {
 
     'use strict';
 
     /*
      *   Localization Logic
-     */ 
+     */
 
     // TODO: Set this from a URI param.
     localize.setLanguage('is-IS');
 
-    $scope.setEnglishLanguage = function () { localize.setLanguage('en-US'); },
-    $scope.setIcelandicLanguage = function () { localize.setLanguage('is-IS'); };
-
-    $scope.toggleLanguage = function () {
-        (localize.getLanguage() == 'is-IS') ? localize.setLanguage('en-US')
-            : localize.setLanguage('is-IS');
+    $scope.toggleLanguage = function() {
+        (localize.getLanguage() == 'is-IS') ? localize.setLanguage('en-US', function () { console.log("Locale: en-US");})
+            : localize.setLanguage('is-IS', function () { console.log("Locale: is-IS"); });
     };
+
+    /*
+     * Pagination Settings
+     */
+
+    $scope.currentPage = 1;
+    $scope.numPerPage = 10;
+    $scope.maxSize = 10;
     
+
+    $scope.getNumPages = function () {
+        return Math.ceil($scope.FilteredSearchData.length / $scope.numPerPage);
+    };
+
+    $scope.getFilteredDataLength = function() {
+        return $scope.FilteredSearchData.length;
+    };
+
     /* 
      * Filters, populate and initialization.
      */
+
+    /* Show or Hidden Properties */
+    $scope.FilterShow = false,
+    $scope.toggleFilterControls = function () {
+        $scope.filterShow = ($scope.filterShow) ? false : true;
+    },
     
+    /* 
+     Search update when you type in a query string.
+    */
+    $scope.FilteredSearchData = [];
+    $scope.updateSearchData = function ()
+    {
+
+        $scope.FilteredSearchData = [];
+        
+        if ($scope.CompanyFilter != "*") {
+            console.log("Filtering Company");
+            angular.forEach($scope.SearchData, function(item) {
+                if (item.COMPANY == $scope.CompanyFilter)
+                    $scope.FilteredSearchData.push(item);
+            });
+        }
+        
+        if ($scope.CountryFilter != "*") {
+            console.log("Filtering Country");
+            angular.forEach($scope.SearchData, function (item) {
+                if (item.COUNTRY == $scope.CountryFilter)
+                    $scope.FilteredSearchData.push(item);
+            });
+        }
+        if ($scope.OfficeFilter != "*") {
+            console.log("Filtering Office");
+            angular.forEach($scope.SearchData, function (item) {
+                if (item.OFFICE == $scope.OfficeFilter)
+                    $scope.FilteredSearchData.push(item);
+            });
+        }
+        
+
+        if($scope.OfficeFilter == "*" && $scope.CountryFilter == "*" && $scope.CompanyFilter == "*")
+            $scope.FilteredSearchData = $scope.SearchData;
+        
+        // Apply filter on the data.
+        $scope.FilteredSearchData = $filter('filter')($scope.FilteredSearchData, $scope.searchEmp);
+
+
+
+    },
+    
+
+
+
     //TODO: Simplify and remove boilerplate code.
 
-    $scope.OfficeFilter = [], $scope.CompanyFilter = [], $scope.CountryFilter = [];
-    $scope.OfficeItems = [], $scope.CompanyItems = [], $scope.CountryItems = [];
+    $scope.OfficeItems = [{ name: "", value: "*" }],
+    $scope.CompanyItems = [{ name: "", value: "*" }],
+    $scope.CountryItems = [{ name: "", value: "*" }];
 
     $http.post("/DirectoryAPI.asmx/GetAllCompanies",
         { data: {},
@@ -281,7 +365,7 @@ app.controller('MainCtrl', ['$http', '$scope', 'localize', function ($http, $sco
             angular.forEach(res.data.d, function (item) {
                 $scope.CompanyItems.push({ name: item, value: item });
             });
-            $scope.CompanyFilter = $scope.CompanyItems[0];
+            $scope.CompanyFilter = $scope.CompanyItems[0].value;
         });
 
     $http.post("/DirectoryAPI.asmx/GetAllCountries",
@@ -295,7 +379,7 @@ app.controller('MainCtrl', ['$http', '$scope', 'localize', function ($http, $sco
         angular.forEach(res.data.d, function (item) {
             $scope.CountryItems.push({ name: item, value: item });
         });
-        $scope.CountryFilter = $scope.CountryItems[0];
+        $scope.CountryFilter = $scope.CountryItems[0].value;
     });
     
     $http.post("/DirectoryAPI.asmx/GetAllOffices",
@@ -309,7 +393,7 @@ app.controller('MainCtrl', ['$http', '$scope', 'localize', function ($http, $sco
         angular.forEach(res.data.d, function (item) {
             $scope.OfficeItems.push({ name: item, value: item });
         });
-        $scope.OfficeFilter = $scope.OfficeItems[0];
+        $scope.OfficeFilter = $scope.OfficeItems[0].value;
     });
 
 
@@ -319,14 +403,50 @@ app.controller('MainCtrl', ['$http', '$scope', 'localize', function ($http, $sco
 
 
 
+    $scope.ShowAutocomplete = false;
+    
+    $scope.changeSearchModel = function (value) {
+        $scope.searchEmp = value;
+        $scope.searchDirectory();
+        $scope.ShowAutocomplete = false;
+    },
 
+    $scope.searchDirectory = function () {
 
+        $scope.ResultVisible = ($scope.searchEmp == "") ? $scope.ResultVisible = false : $scope.ResultVisible = true;
+        
+        // Apply filter on the help.
+        $scope.HelpListFiltered = $filter('filter')($scope.HelpList, $scope.searchEmp);
+        if ($scope.HelpListFiltered.length > 0) {
+            $scope.ShowAutocomplete = true;
+        }
+        else
+            $scope.ShowAutocomplete = false;
+        //$timeout.cancel($scope.AutoCompleteTimer);
+        //$scope.AutoCompleteTimer = $timeout(function () {
+        //    $scope.ShowAutocomplete = false;
+        //}, 15000);
 
+        // TODO: Add Timeout to search DATA.
+        if (!$scope.SearchData) {
+            $http.post("/DirectoryAPI.asmx/GetAllEmployees",
+            {
+                data: {  },
+                headers:
+                    {
+                        'Content-Type': 'application/json'
+                    }
+            }).then(function (res) {
+                $scope.SearchData = res.data.d;
+                $scope.bigTotalItems = $scope.SearchData.length;
+                $scope.updateSearchData();
+            });
+        } else {
+            $scope.updateSearchData();
+        }
+        
 
-
-    $scope.Searches = 0;
-    $scope.searchDirectory = function(delay) {
-
+        
     };
 
 
@@ -348,6 +468,7 @@ app.controller('MainCtrl', ['$http', '$scope', 'localize', function ($http, $sco
     
     function getHelp() {
         if ($scope.HelpList == null) {
+            $scope.HelpList = [{ type: "loading", value: "loading autocomplete help." }];
             var data = { "query": "*" };
             $http.post('/DirectoryAPI.asmx/AutocompleteHelp', data, {
                 headers: {
@@ -356,10 +477,11 @@ app.controller('MainCtrl', ['$http', '$scope', 'localize', function ($http, $sco
             }).then(function (res) {
                 var emps = [];
                 angular.forEach(res.data.d, function (item) {
-                    emps.push(item);
+                    emps.push({ "type": item.Type, "value": item.Value });
                 });
                 $scope.HelpList = emps;
                 return $scope.HelpList;
+                
             });
         }
         else {
@@ -368,10 +490,23 @@ app.controller('MainCtrl', ['$http', '$scope', 'localize', function ($http, $sco
         return null;
     }
 
+    $scope.HelpRandomizer = function() {
+        return 0.5 - Math.random();
+    };
+
     // Load the autocomplete list.
     $scope.HelpList = getHelp();
     
+    
 }]);
+/*global app*/
+
+app.filter('startFrom', function () {
+    return function (input, start) {
+        start = +start; //parse to int
+        return input.slice(start);
+    };
+});
 /*global app*/
 
 app.factory('ApiService', ['$http','$q', function ($http, $q) {
@@ -393,6 +528,23 @@ app.factory('ApiService', ['$http','$q', function ($http, $q) {
 
             return deferred.promise;
 
-        }
+        },
+        searchForEmps: function (query) {
+            
+            var data = { "query": query };
+            
+            var deferred = $q.defer();
+            
+            $http({ method: 'POST', url: '/DirectoryAPI.asmx/AutocompleteHelp', headers: { 'Content-Type': 'application/json' } })
+                .success(function (data, status, headers, config) {
+                    deferred.resolve(data);
+                })
+                .error(function (data, status, headers, config) {
+                    deferred.reject('Error when calling AutocompleteHelp');
+                });
+
+            return deferred.promise;
+
+        },
     };
 }]);

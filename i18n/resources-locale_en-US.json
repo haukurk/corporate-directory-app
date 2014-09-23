@@ -26,18 +26,13 @@
         "description": ""
     },
     {
-        "key": "_FilterAllCountries_",
-        "value": "Land (Öll lönd)",
-        "description": ""
-    },
-    {
         "key": "_SwitchLang_",
         "value": "English",
         "description": ""
     },
     {
         "key": "_Filter_",
-        "value": "Filter",
+        "value": "Show filter",
         "description": ""
     },
     {
@@ -46,8 +41,18 @@
         "description": ""
     },
     {
-        "key": "_CompanyAllFilter_",
-        "value": "All Companies",
+        "key": "_FilterAllCountries_",
+        "value": "All countries",
+        "description": ""
+    },
+    {
+        "key": "_FilterAllCompanies_",
+        "value": "All companies",
+        "description": ""
+    },
+    {
+        "key": "_FilterAllOffices_",
+        "value": "All offices",
         "description": ""
     },
     {
@@ -69,7 +74,103 @@
         "key": "_OfficeLowerCaseDative_",
         "value": "office",
         "description": ""
+    },
+    {
+        "key": "_FirstText_",
+        "value": "First",
+        "description": ""
     }, 
+	{
+		"key": "_SearchTipsText_",
+		"value": "Are you looking for...",
+		"description": ""
+	},
+	{
+		"key": "_Company_",
+		"value": "Company",
+		"description": ""
+	},
+	{
+		"key": "_Country_",
+		"value": "Country",
+		"description": ""
+	},
+	{
+		"key": "_Office_",
+		"value": "Office",
+		"description": ""
+	},
+	{
+		"key": "_AreYouLookingForString_",
+		"value": "Are you looking for the",
+		"description": ""
+	},
+	{
+		"key": "_EmployeeCardTitle_",
+		"value": "Title",
+		"description": ""
+	},
+	{
+		"key": "_EmployeeCardEmail_",
+		"value": "Email",
+		"description": ""
+	},
+	{
+		"key": "_EmployeeCardDepartment_",
+		"value": "Department",
+		"description": ""
+	},
+	{
+		"key": "_EmployeeCardDivision_",
+		"value": "Division",
+		"description": ""
+	},
+	{
+		"key": "_EmployeeCardInternalPhone_",
+		"value": "Internal Phone",
+		"description": ""
+	},
+	{
+		"key": "_EmployeeCardWorkPhone_",
+		"value": "Work Phone",
+		"description": ""
+	},
+	{
+		"key": "_EmployeeCardMobilePhone_",
+		"value": "Mobile Phone",
+		"description": ""
+	},
+	{
+		"key": "_EmployeeCardEmployeeNumber_",
+		"value": "Employee #",
+		"description": ""
+	},
+	{
+		"key": "_EmployeeCardCountry_",
+		"value": "Country",
+		"description": ""
+	},
+	{
+		"key": "_EmployeeCardOffice_",
+		"value": "Office",
+		"description": ""
+	},
+	{
+		"key": "_EmployeeCardSchedule_",
+		"value": "Schedule",
+		"description": ""
+	},
+	{
+		"key": "_EmployeeCardScheduleUnknown_",
+		"value": "Unknown",
+		"description": ""
+	},
+	{
+		"key": "_EmployeeCardCompany_",
+		"value": "Company",
+		"description": ""
+	},
+	
     {
         "key": "_SearchPlaceHolder_",
         "value": "Name, email address, department, mobile, company, country or office location",

@@ -23,6 +23,7 @@ app
             // flag to indicate if the service hs loaded the resource file
             resourceFileLoaded: false,
 
+
             // success handler for all server communication
             successCallback: function (data) {
                 // store the returned array in the dictionary
@@ -34,10 +35,11 @@ app
             },
 
             // allows setting of language on the fly
-            setLanguage: function (value) {
+            setLanguage: function (value,cb) {
                 localize.language = value;
-                localize.initLocalizedResources();
+                localize.initLocalizedResources(cb);
             },
+           
 
             // allows getting the current language settingsy
             getLanguage: function (value) {
@@ -69,18 +71,30 @@ app
             },
 
             // loads the language resource file from the server
-            initLocalizedResources: function () {
+            initLocalizedResources: function (cb) {
                 // build the url to retrieve the localized resource file
                 var url = localize.url || localize.buildUrl();
                 // request the resource file
-                $http({ method: "GET", url: url, cache: false }).success(localize.successCallback).error(function () {
-                    // the request failed set the url to the default resource file
-                    var url = '/i18n/resources-locale_default.json';
-                    // request the default resource file
-                    $http({ method: "GET", url: url, cache: false }).success(localize.successCallback);
-                });
+                
+                //TODO: ugly.
+                if(cb == null)
+                {
+                    $http({ method: "GET", url: url, cache: false }).success(localize.successCallback).error(function() {
+                        // the request failed set the url to the default resource file
+                        var url = '/i18n/resources-locale_default.json';
+                        // request the default resource file
+                        $http({ method: "GET", url: url, cache: false }).success(localize.successCallback);
+                    });
+                } else {
+                    $http({ method: "GET", url: url, cache: false }).success(localize.successCallback).success(cb).error(function () {
+                        // the request failed set the url to the default resource file
+                        var url = '/i18n/resources-locale_default.json';
+                        // request the default resource file
+                        $http({ method: "GET", url: url, cache: false }).success(localize.successCallback).success(cb);
+                    });
+                }
             },
-
+            
             // checks the dictionary for a localized resource string
             getLocalizedString: function (value) {
                 // default the result to an empty string

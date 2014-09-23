@@ -4,7 +4,7 @@
 ==================================================================*/
 /* global angular */
 
-var app = angular.module('corpdir', ['ngRoute', 'ui.bootstrap', 'angularMoment']);
+var app = angular.module('corpdir', ['ngRoute', 'ngAnimate', 'ui.bootstrap', 'angularMoment']);
 
 app.config(['$routeProvider', '$locationProvider', '$httpProvider', function ($routeProvider, $locationProvider, $httpProvider, localize) {
 	'use strict';
@@ -13,11 +13,14 @@ app.config(['$routeProvider', '$locationProvider', '$httpProvider', function ($r
 		.when('/', {
 			templateUrl: 'corpdirapplication/templates/home.htm'
 		})
+        .when('/results', {
+            templateUrl: 'corpdirapplication/templates/results.htm'
+        })
 		.otherwise({
 			redirectTo: '/'
 		});
 
-	$locationProvider.hashPrefix('!');
+	//$locationProvider.hashPrefix('!');
    
 
 	// This is required for Browser Sync to work poperly
